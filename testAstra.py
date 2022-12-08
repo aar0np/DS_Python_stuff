@@ -13,8 +13,12 @@ auth_provider = PlainTextAuthProvider(clientID, secret)
 cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
 session = cluster.connect()
 
-row = session.execute("select release_version from system.local").one()
+row = session.execute("select broadcast_address, host_id, data_center, rack, tokens from system.local").one()
 if row:
-    print(row[0])
+    print("address: " + row[0])
+    print("host id: " + str(row[1]))
+    print("data center: " + row[2])
+    print("rack: " + row[3])
+    print("tokens: " + str(len(row[4])))
 else:
     print("An error occurred.")
