@@ -13,8 +13,8 @@ auth_provider = PlainTextAuthProvider(clientID, secret)
 cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
 session = cluster.connect()
 
-#row = session.execute("select release_version from system.local").one()
-row = session.execute("SELECT toTimestamp(now()) - 1h FROM system.local;").one()
+row = session.execute("select rpc_address,host_id,data_center,rack,tokens from system.local").one()
+#row = session.execute("SELECT toTimestamp(now()) - 1h FROM system.local;").one()
 
 if row:
     print("address: " + row[0])

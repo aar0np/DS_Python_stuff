@@ -33,6 +33,6 @@ for row in rows:
     print("rack: " + row[3])
     print("tokens: " + str(len(row[4])))
 
-rows = session.execute("SELECT stackoverflow.hourOffset(toTimestamp(now()),-1) FROM system.local;")
-for row in rows:
-    print(row[0])
+#rows = session.execute("SELECT stackoverflow.hourOffset(toTimestamp(now()),-1) FROM system.local;")
+#for row in rows:
+#    print(row[0])
