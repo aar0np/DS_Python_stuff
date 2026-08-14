@@ -1,0 +1,4 @@
+get-pip.py
+.python-version
+*.csv
+docling_vars
