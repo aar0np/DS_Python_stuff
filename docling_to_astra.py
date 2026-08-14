@@ -54,8 +54,8 @@ ASTRA_VECTORIZE_KEY = os.getenv("ASTRA_VECTORIZE_KEY")  # optional
 # Documents to convert – edit this list as needed.
 WEB_SOURCES = [
     "https://arxiv.org/pdf/2408.09869",  # Docling paper
-    #"https://arxiv.org/pdf/2501.17887",  # DoclingV2 paper
-    #"https://arxiv.org/pdf/2501.08828",  # third example
+    "https://arxiv.org/pdf/2501.17887",  # DoclingV2 paper
+    "https://arxiv.org/pdf/2501.08828",  # third example
 ]
 
 # Poll interval (seconds) while waiting for the batch job to finish.
