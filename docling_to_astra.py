@@ -19,11 +19,6 @@ Required environment variables:
 
 Optional environment variables:
   ASTRA_KEYSPACE           – defaults to "default_keyspace"
-  ASTRA_VECTORIZE_PROVIDER – defaults to "openai"
-  ASTRA_VECTORIZE_MODEL    – defaults to "text-embedding-3-small"
-  ASTRA_VECTORIZE_KEY      – provider API key (passed as providerKey); required
-                             if your AstraDB vectorize integration is not
-                             pre-configured with a shared key
 
 Usage:
   python docling_to_astra.py
@@ -47,9 +42,6 @@ ASTRA_API_ENDPOINT = os.environ["ASTRA_API_ENDPOINT"]
 ASTRA_TOKEN = os.environ["ASTRA_TOKEN"]
 ASTRA_COLLECTION = os.environ["ASTRA_COLLECTION"]
 ASTRA_KEYSPACE = os.getenv("ASTRA_KEYSPACE", "default_keyspace")
-ASTRA_VECTORIZE_PROVIDER = os.getenv("ASTRA_VECTORIZE_PROVIDER", "openai")
-ASTRA_VECTORIZE_MODEL = os.getenv("ASTRA_VECTORIZE_MODEL", "text-embedding-3-small")
-ASTRA_VECTORIZE_KEY = os.getenv("ASTRA_VECTORIZE_KEY")  # optional
 
 # Documents to convert – edit this list as needed.
 WEB_SOURCES = [
@@ -79,14 +71,7 @@ def submit_batch(sources: list[str]) -> str:
         "token": ASTRA_TOKEN,
         "keyspace": ASTRA_KEYSPACE,
         "collection_name": ASTRA_COLLECTION,
-        "vectorize_provider": ASTRA_VECTORIZE_PROVIDER,
-        "vectorize_model": ASTRA_VECTORIZE_MODEL,
     }
-
-    if ASTRA_VECTORIZE_KEY:
-        astradb_target["vectorize_authentication"] = {
-            "providerKey": ASTRA_VECTORIZE_KEY
-        }
 
     payload = {
         "sources": [{"kind": "http", "url": url} for url in sources],
